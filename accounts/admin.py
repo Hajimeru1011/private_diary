@@ -1,7 +1,6 @@
 from django.contrib import admin
+from .models import CustomUser
 
 # Register your models here.
 
-from .models import Diary
-
-admin.site.register(Diary)
+admin.site.register(CustomUser)
