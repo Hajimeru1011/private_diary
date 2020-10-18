@@ -4,8 +4,8 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views import generic
 from .forms import InquiryForm
-
-
+from .models import Diary
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 logger = logging.getLogger(__name__)
 
@@ -27,5 +27,13 @@ class InquiryView(generic.FormView):
         return super().form_valid(form)
 
 
+class DiaryListView(LoginRequiredMixin, generic.ListView):
+    model = Diary
+    template_name = 'diary_list.html'
+    paginate_by = 2
+
+    def get_queryset(self):
+        diaries = Diary.objects.filter(user=self.request.user).order_by('-created_at')
+        return diaries
 
 
