@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*']
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'y8(byq6&ic6g^5!tb4m$y5h6c#1d(0+u7do3f+mk%mw-(=*^mn'
 
-
+DEBUG = True
 
 
 # Application definition
@@ -187,3 +187,10 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 # デフォルトのメール送信元を設定
 DEFAULT_FROM_EMAIL = 'admin@example.com'
 
+#You probably have not got an e-mail (SMTP) server running on the machine 
+#you are developing on. Therefore, allauth is unable to send verification mails.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# バックアップバッチ用
+BACKUP_PATH = 'backup/'
+NUM_SAVED_BACKUP = 30
